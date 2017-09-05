@@ -30,6 +30,7 @@ def main():
     parser.add_argument('-x', '--proxy', help='Set proxy (https://IP:PORT)')
     parser.add_argument('-p', '--post', help='Data string to be sent through POST (parameter=value&also=another)')
     parser.add_argument('-c', '--cookie', help='HTTP Cookie header')
+    parser.add_argument('-H', '--host', help='Virtual host or host header')
     parser.add_argument('-t', '--type', help='Type of payload [sqli | xss | others]', choices=['sql','xss','others','all'], default='all')
     if len(sys.argv)==1: parser.print_help(); sys.exit(0)
     args = parser.parse_args()
@@ -101,6 +102,8 @@ def main():
         headers['X-Forwarded-For'] = randomIP()
     if args.cookie:
         headers['cookie'] = args.cookie
+    if args.host:
+        headers['host'] = args.host
     #Headers
 
     #upordown
